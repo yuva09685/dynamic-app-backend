@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "dynamicapp_user",
+    "password": "IdwsdKfeOrCgi3zhoVNrovj1u6aV3INz",
+    "database": "dynamicapp",
+    "host": "dpg-cudmc452ng1s73ejfoug-a",
+    "dialect": "postgres"
   }
 }
