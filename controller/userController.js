@@ -4,7 +4,7 @@ const { User } = require("../models");
 // Generate Gravatar URL
 const getGravatarUrl = (email) => {
   console.log(email);
-  
+
   const hash = crypto.createHash("md5").update(email).digest("hex");
   return `https://www.gravatar.com/avatar/${hash}?s=200&d=identicon`;
 };
@@ -28,7 +28,31 @@ const getProfiles = async (req, res) => {
   res.json(users);
 };
 
+const updateProfiles = async (req, res) => {
+  const id = req.body.id
+  try {
+    const userUpdate = await User.update({ where: { id } });
+    res.json(userUpdate)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "Error saving profile" });
+  }
+}
+
+const deleteProfiles = async (req, res) => {
+  const id = req.body.id
+  try {
+    const deleteUser = await User.delete({ where: { id } });
+    res.json(deleteUser)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "Error saving profile" });
+  }
+}
+
 module.exports = {
   createProfile,
   getProfiles,
+  updateProfiles,
+  deleteProfiles
 };
