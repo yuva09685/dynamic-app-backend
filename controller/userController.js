@@ -31,7 +31,7 @@ const getProfiles = async (req, res) => {
 const updateProfiles = async (req, res) => {
   const id = req.body.id
   try {
-    const userUpdate = await User.update({ where: { id } });
+    const userUpdate = await User.update(req.body,{ where: { id:id } });
     res.json(userUpdate)
   } catch (error) {
     console.log(error)
