@@ -42,7 +42,7 @@ const updateProfiles = async (req, res) => {
 const deleteProfiles = async (req, res) => {
   const id = req.body.id
   try {
-    const deleteUser = await User.delete({ where: { id } });
+    const deleteUser = await User.destroy({ where: { id } });
     res.json(deleteUser)
   } catch (error) {
     console.log(error)
