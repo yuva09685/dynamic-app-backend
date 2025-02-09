@@ -1,5 +1,6 @@
 const crypto = require("crypto");
 const { User } = require("../models");
+const { sendEmail } = require("./nodeMailer");
 
 // Generate Gravatar URL
 const getGravatarUrl = (email) => {
@@ -15,6 +16,19 @@ const createProfile = async (req, res) => {
     const { name, email, bio, location } = req.body;
     const avatar = getGravatarUrl(email);
     const user = await User.create({ name, email, bio, location, avatar });
+
+    try {
+      const response = await sendEmail(
+          email,
+          "Welcome to our platform!",
+          `<p>Dear ${name},</p><p>Welcome to our platform! Your profile has been created successfully.</p>`
+      );
+      console.log(response, "send email fucntion response ");
+      
+  } catch (emailError) {
+      console.error("Error sending welcome email:", emailError);
+  }
+
     res.json(user);
   } catch (error) {
     console.log(error)
