@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const { User } = require("../models");
-const { sendEmail } = require("./nodeMailer");
+const { sendEmail } = require("../utils/nodeMailer");
 
 // Generate Gravatar URL
 const getGravatarUrl = (email) => {
